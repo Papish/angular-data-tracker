@@ -1,0 +1,31 @@
+<main>
+  <h1>Todo App</h1>
+  <div>
+    <input type="text" [formControl]="newTodo" />
+    <button type="button" (click)="addTodo()">Add Todo</button>
+  </div>
+  <div>
+    <div>{{ completedTask }} of {{ totalTask }} done</div>
+    <hr />
+    <h3>Items</h3>
+    <ul>
+      <li *ngFor="let todo of todos">
+        <span
+          [ngClass]="{
+            'todo-complete': todo.isCompleted
+          }"
+        >
+          {{ todo.todo }}
+        </span>
+        <button
+          *ngIf="!todo.isCompleted"
+          type="button"
+          (click)="updateTodoStatus(todo.id)"
+        >
+          Done
+        </button>
+        <button type="button" (click)="deleteTodo(todo.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</main>
